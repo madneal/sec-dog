@@ -15,4 +15,15 @@
         <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+    <actions>
+        <group id="Myplugin.GreetingMenu" text="Greeting" description="Greeting menu">
+            <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
+            <action class="org.jetbrains.plugins.template.HelloAction" id="Myplugin.Hello" text="Hello" description="Say hello"></action>
+        </group>
+        <group id="Myplugin.CheckMenu" text="CheckMenu" description="Check dependency">
+            <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
+            <action class="org.jetbrains.plugins.template.DependencyCheck" id="Myplugin.Cc" text="Check" description="check check"></action>
+        </group>
+
+    </actions>
 </idea-plugin>
