@@ -15,7 +15,7 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This is the first goland plugin for SCA for Go. It focuses on the dependency security of the Go project. It will generate the sca report for the dependencies with vulnerabilities.
+This is the first goland plugin for SCA of Go. It focuses on the dependency security of the Go project. It will generate the sca report for the dependencies with vulnerabilities.
 <!-- Plugin description end -->
 
 ## Installation
