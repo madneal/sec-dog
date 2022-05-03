@@ -1,14 +1,6 @@
 package com.github.madneal.secdog
 
 import com.google.gson.Gson
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import org.codehaus.jettison.json.JSONTokener
-import java.io.BufferedReader
-import java.io.DataOutputStream
-import java.io.InputStreamReader
-import java.lang.StringBuilder
-import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
 
