@@ -3,5 +3,8 @@
 # sec-dog Changelog
 
 ## [Unreleased]
-### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+
+## [0.0.2]
+* 第一个 Goland 的 SCA 组件
+* 生成 SCA 报告
+
