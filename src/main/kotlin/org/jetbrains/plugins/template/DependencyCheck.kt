@@ -1,18 +1,16 @@
 package org.jetbrains.plugins.template
 
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.command.CommandProcessor
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.roots.ModuleRootManager
-import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
+import java.time.LocalDateTime
 
 
 class DependencyCheck : DumbAwareAction() {
@@ -34,32 +32,30 @@ class DependencyCheck : DumbAwareAction() {
                 var newLine = line.trimStart()
                 var packages = newLine.split("\\s+".toRegex()).toTypedArray()
                 if (packages.isNotEmpty()) {
-                    var ads = checker.Check(packages[0], packages[1])
-                    if (ads.isNotEmpty()) {
-                        for (ad in ads) {
-                            println(ad.description)
-//                                var browser = JBCefBrowser()
-//                                browser.loadHTML("<html><body><p>dfasdfas</p></body></html>")
-//                                var panel = JPanel(BorderLayout())
-//                                panel.add(browser.component, BorderLayout.CENTER)
-
-                            var psiFileFactory = PsiFileFactory.getInstance(project)
-
-                            val createFileFromText = psiFileFactory.createFileFromText("soc.md", "fadsfdsaf")
-                            var directory = modFile.containingDirectory
-                            directory.add(createFileFromText)
-                        }
-                    }
+                    var result = checker.Check(packages[0], packages[1])
+                    var psiFileFactory = PsiFileFactory.getInstance(project)
+                    var curTime = LocalDateTime.now()
+                    val createFileFromText = psiFileFactory.createFileFromText("sca.md", result)
+                    var directory = modFile.containingDirectory
+                    directory.add(createFileFromText)
                 }
+//                    var ads = checker.Check(packages[0], packages[1])
+//                    if (ads.isNotEmpty()) {
+//                        for (ad in ads) {
+////                            println(ad.description)
+////                                var browser = JBCefBrowser()
+////                                browser.loadHTML("<html><body><p>dfasdfas</p></body></html>")
+////                                var panel = JPanel(BorderLayout())
+////                                panel.add(browser.component, BorderLayout.CENTER)
+//
+//                            var psiFileFactory = PsiFileFactory.getInstance(project)
+//                            val createFileFromText = psiFileFactory.createFileFromText("soc.md", "fadsfdsaf")
+//                            var directory = modFile.containingDirectory
+//                            directory.add(createFileFromText)
+//                        }
+//                    }
+//                }
             }
         }
 }
-
-    fun executeCouldRollBackAction(project: Project?, action: (Project?) -> Unit) {
-        CommandProcessor.getInstance().executeCommand(project, {
-            ApplicationManager.getApplication().runWriteAction {
-                action.invoke(project)
-            }
-        }, "insertKotlin", "JsonToKotlin")
-    }
 }

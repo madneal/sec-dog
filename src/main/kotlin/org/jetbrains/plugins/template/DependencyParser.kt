@@ -10,7 +10,6 @@ class DependencyParser(val psFile: PsiFile?) {
             return Collections.emptyList()
         }
         var dependencies: List<String> = listOf(psFile.toString())
-        println(psFile.text)
         return dependencies
     }
 }

@@ -7,6 +7,7 @@ import org.codehaus.jettison.json.JSONTokener
 import java.io.BufferedReader
 import java.io.DataOutputStream
 import java.io.InputStreamReader
+import java.lang.StringBuilder
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
@@ -36,7 +37,7 @@ data class Advisory(
 
 class Checker {
 
-    fun Check(packageName: String, version: String): List<Advisory> {
+    fun Check(packageName: String, version: String): String {
         var packageNameNew = URLEncoder.encode(packageName, "utf-8")
         var result = ""
         var url = URL("https://deps.dev/_/s/go/p/$packageNameNew/v/$version/dependencies")
@@ -47,13 +48,37 @@ class Checker {
             if (dependency.dependencies.isNotEmpty()) {
                 for (d in dependency.dependencies) {
                     if (d.advisories.isNotEmpty()) {
-                        return d.advisories
+                        return convertToMarkDown(d.advisories, "$packageName  $version")
                     }
                 }
             }
         } catch (e: Exception) {
             println(e)
         }
-        return emptyList()
+        return ""
+    }
+
+    fun convertToMarkDown(ads: List<Advisory>, packageName: String): String {
+        var result = StringBuilder().append("# $packageName\n")
+        for (ad in ads) {
+            val aliases = ad.aliases.joinToString(",")
+            val refs = ad.referenceURLs.map { it -> "* $it " }.joinToString("\n")
+            var adString = """
+## ${ad.title}
+## Overview
+Source: ${ad.source}
+ID: ${ad.sourceID}
+Aliases: $aliases
+## Desciption
+${ad.description}
+## Impact
+Severity: ${ad.severity}
+
+References:
+$refs
+                """
+            result.append(adString)
+        }
+        return result.toString()
     }
 }
