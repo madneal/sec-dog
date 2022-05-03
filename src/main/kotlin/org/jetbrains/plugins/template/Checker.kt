@@ -36,28 +36,24 @@ data class Advisory(
 
 class Checker {
 
-    fun Check(packageName: String, version: String) {
+    fun Check(packageName: String, version: String): List<Advisory> {
         var packageNameNew = URLEncoder.encode(packageName, "utf-8")
         var result = ""
         var url = URL("https://deps.dev/_/s/go/p/$packageNameNew/v/$version/dependencies")
         try {
-            url.getContent()
             result = url.readText()
             var gson = Gson()
             var dependency = gson.fromJson(result, Dependency::class.java)
-            println(dependency.dependencyCount)
             if (dependency.dependencies.isNotEmpty()) {
                 for (d in dependency.dependencies) {
                     if (d.advisories.isNotEmpty()) {
-                        for (ad in d.advisories) {
-                            println(ad.aliases)
-                            println(ad.description)
-                        }
+                        return d.advisories
                     }
                 }
             }
         } catch (e: Exception) {
             println(e)
         }
+        return emptyList()
     }
 }
