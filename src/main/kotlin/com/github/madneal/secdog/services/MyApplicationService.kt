@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.madneal.secdog.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.madneal.secdog.MyBundle
 
 class MyApplicationService {
 

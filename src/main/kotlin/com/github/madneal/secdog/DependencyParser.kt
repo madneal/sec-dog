@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template
+package com.github.madneal.secdog
 
 import com.intellij.psi.PsiFile
 import org.apache.commons.lang.StringUtils

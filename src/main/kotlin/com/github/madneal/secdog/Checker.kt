@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template
+package com.github.madneal.secdog
 
 import com.google.gson.Gson
 import com.google.gson.JsonArray

@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template
+package com.github.madneal.secdog
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
