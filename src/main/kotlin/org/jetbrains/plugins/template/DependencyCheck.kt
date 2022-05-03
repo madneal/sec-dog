@@ -10,14 +10,15 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
+import java.time.Instant
 import java.time.LocalDateTime
 
 
 class DependencyCheck : DumbAwareAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
-//        var modFile: PsiFile? = e.getData(PlatformDataKeys.PSI_FILE)
         val project = e.getData(PlatformDataKeys.PROJECT) as Project
+        var result = ""
         var modFiles = FilenameIndex.getFilesByName(project, "go.mod", GlobalSearchScope.projectScope(project))
         var modFile: PsiFile? = null
         if (modFiles.isNotEmpty()) {
@@ -32,30 +33,14 @@ class DependencyCheck : DumbAwareAction() {
                 var newLine = line.trimStart()
                 var packages = newLine.split("\\s+".toRegex()).toTypedArray()
                 if (packages.isNotEmpty()) {
-                    var result = checker.Check(packages[0], packages[1])
-                    var psiFileFactory = PsiFileFactory.getInstance(project)
-                    var curTime = LocalDateTime.now()
-                    val createFileFromText = psiFileFactory.createFileFromText("sca.md", result)
-                    var directory = modFile.containingDirectory
-                    directory.add(createFileFromText)
+                    result += checker.Check(packages[0], packages[1])
                 }
-//                    var ads = checker.Check(packages[0], packages[1])
-//                    if (ads.isNotEmpty()) {
-//                        for (ad in ads) {
-////                            println(ad.description)
-////                                var browser = JBCefBrowser()
-////                                browser.loadHTML("<html><body><p>dfasdfas</p></body></html>")
-////                                var panel = JPanel(BorderLayout())
-////                                panel.add(browser.component, BorderLayout.CENTER)
-//
-//                            var psiFileFactory = PsiFileFactory.getInstance(project)
-//                            val createFileFromText = psiFileFactory.createFileFromText("soc.md", "fadsfdsaf")
-//                            var directory = modFile.containingDirectory
-//                            directory.add(createFileFromText)
-//                        }
-//                    }
-//                }
             }
         }
+        var psiFileFactory = PsiFileFactory.getInstance(project)
+        var curTime = Instant.now()
+        val createFileFromText = psiFileFactory.createFileFromText("sca-$curTime.md", result)
+        var directory = modFile.containingDirectory
+        directory.add(createFileFromText)
 }
 }
