@@ -1,5 +1,7 @@
 package com.github.madneal.secdog
 
+import com.intellij.notification.NotificationGroupManager
+import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.application.ApplicationManager
@@ -45,6 +47,9 @@ class DependencyCheck : DumbAwareAction() {
         } catch (e: Exception) {
             println(e)
         }
+        NotificationGroupManager.getInstance().getNotificationGroup("SCA report")
+                .createNotification("Finish SCA scan and generate SCA.md report successfully", NotificationType.INFORMATION)
+                .notify(project)
     }
 }
 

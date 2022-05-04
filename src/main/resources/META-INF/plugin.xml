@@ -9,6 +9,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.madneal.secdog.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.madneal.secdog.services.MyProjectService"/>
+        <notificationGroup displayType="BALLOON" id="SCA report"></notificationGroup>
     </extensions>
 
     <applicationListeners>
