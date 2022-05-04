@@ -5,12 +5,16 @@ import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.fileEditor.FileEditorManager
+import com.intellij.openapi.fileEditor.OpenFileDescriptor
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
+import java.io.File
 
 
 class DependencyCheck : DumbAwareAction() {
@@ -43,6 +47,15 @@ class DependencyCheck : DumbAwareAction() {
             ApplicationManager.getApplication().runWriteAction() {
                 directory.findFile(reportName)?.delete()
                 directory.add(createFileFromText)
+            }
+            var file = VfsUtil.findFileByIoFile(File(project.basePath+"/"+reportName), true)
+            println(file)
+            if (file != null) {
+                try {
+                    FileEditorManager.getInstance(project).openTextEditor(OpenFileDescriptor(project, file), true)
+                } catch (e:Exception) {
+                    e.printStackTrace()
+                }
             }
         } catch (e: Exception) {
             println(e)
