@@ -4,7 +4,8 @@
 
 ## [Unreleased]
 
-## [0.0.2]
-* 第一个 Goland 的 SCA 组件
-* 生成 SCA 报告
+## [0.0.4]
+* fix for the compatible version
+* delete report if exists
 
+## [0.0.2]
