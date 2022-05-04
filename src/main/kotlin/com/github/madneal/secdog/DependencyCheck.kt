@@ -2,13 +2,18 @@ package com.github.madneal.secdog
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
+import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.application.runWriteAction
+import com.intellij.openapi.editor.Document
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
 import java.time.Instant
+import com.intellij.util.IncorrectOperationException as IncorrectOperationException
 
 
 class DependencyCheck : DumbAwareAction() {
@@ -36,13 +41,15 @@ class DependencyCheck : DumbAwareAction() {
         }
         try {
             var psiFileFactory = PsiFileFactory.getInstance(project)
-            var curTime = Instant.now()
             val createFileFromText = psiFileFactory.createFileFromText(reportName, result)
             var directory = modFile.containingDirectory
-            directory.findFile(reportName)?.delete()
-            directory.add(createFileFromText)
+            ApplicationManager.getApplication().runWriteAction() {
+                directory.findFile(reportName)?.delete()
+                directory.add(createFileFromText)
+            }
         } catch (e: Exception) {
             println(e)
         }
     }
 }
+
