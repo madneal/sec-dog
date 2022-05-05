@@ -8,6 +8,19 @@
 This is the first goland plugin for SCA of Go. It focuses on the dependency security of the Go project. It will generate the sca report for the dependencies with vulnerabilities.
 <!-- Plugin description end -->
 
+## Usage
+
+### By menu
+
+![image](https://user-images.githubusercontent.com/12164075/166859685-3ced9cbf-6260-4c4f-8653-8457f6d035b4.png)
+
+### By Action
+
+1. Press `Cmd+Shit+A`
+2. Search `SCA Check`
+
+![image](https://user-images.githubusercontent.com/12164075/166859772-079e6b39-d767-41c0-9805-98863c61ffda.png)
+
 ## Installation
 
 - Using IDE built-in plugin system:
