@@ -22,10 +22,22 @@ version = properties("pluginVersion")
 // Configure project's dependencies
 repositories {
     mavenCentral()
+    maven("https://www.jetbrains.com/intellij-repository/releases")
+    maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
+    maven("https://cache-redirector.jetbrains.com/download.jetbrains.com/teamcity-repository")
+    maven("https://cache-redirector.jetbrains.com/packages.jetbrains.team/maven/p/grazi/grazie-platform-public")
+    maven("https://cache-redirector.jetbrains.com/maven.pkg.jetbrains.space/public/p/ktor/eap")
+    maven("https://cache-redirector.jetbrains.com/download-pgp-verifier")
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation("com.jetbrains.intellij.go:go-test-framework:221.5080.224") {
+        exclude("org.jetbrains.kotlin", "kotlin-stdlib-jdk8")
+        exclude("org.jetbrains.kotlin", "kotlin-reflect")
+        exclude("com.jetbrains.rd", "rd-core")
+        exclude("com.jetbrains.rd", "rd-swing")
+        exclude("com.jetbrains.rd", "rd-framework")
+    }
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
@@ -92,6 +104,18 @@ tasks {
                 getOrNull(properties("pluginVersion")) ?: getLatest()
             }.toHTML()
         })
+    }
+
+    runPluginVerifier {
+        val versions = properties("pluginVerifierIdeVersions")
+            .split(",")
+            .map(String::trim)
+            .filter(String::isNotEmpty)
+        // Kinda useless since the pluginVerifier will cry out
+        // anyway, but may not setting a version will be implemented at some point.
+        if (versions.isNotEmpty()) {
+            ideVersions.set(versions)
+        }
     }
 
     // Configure UI tests plugin
