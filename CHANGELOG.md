@@ -4,7 +4,8 @@
 
 ## [Unreleased]
 
-## [0.0.2]
-* 第一个 Goland 的 SCA 组件
-* 生成 SCA 报告
+## [0.1.1]
+* fix the depencies of test framework
+* compatible to GO-2022.1
 
+## [0.0.2]
