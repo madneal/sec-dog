@@ -19,7 +19,7 @@
     <actions>
         <group id="Myplugin.CheckMenu" text="SCA Checker" description="Software component analysis">
             <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
-            <action class="com.github.madneal.secdog.DependencyCheck" id="Myplugin.Checker" text="Check"></action>
+            <action class="com.github.madneal.secdog.DependencyCheck" id="Myplugin.Checker" text="SCA Check"></action>
         </group>
     </actions>
 </idea-plugin>
