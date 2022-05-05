@@ -4,7 +4,10 @@
 
 ## [Unreleased]
 
-## [0.0.2]
-* 第一个 Goland 的 SCA 组件
-* 生成 SCA 报告
+## [0.0.5]
+* update the plugin icon
+* add report finished notification
+* open report after finishing
+* fix for write action error log
 
+## [0.0.2]
