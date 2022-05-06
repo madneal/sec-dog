@@ -52,7 +52,10 @@ class Checker {
 
     fun convertToMarkDown(ads: List<Advisory>, packageName: String): String {
         var result = StringBuilder().append("# $packageName\n")
+        val map = mutableMapOf<String, Boolean>()
         for (ad in ads) {
+            map.put(ad.title, true)
+            println(map)
             val aliases = ad.aliases.joinToString(",")
             val refs = ad.referenceURLs.map { it -> "* $it " }.joinToString("\n")
             var adString = """

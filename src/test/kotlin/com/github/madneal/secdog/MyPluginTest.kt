@@ -28,4 +28,9 @@ class MyPluginTest : BasePlatformTestCase() {
     fun testRename() {
         myFixture.testRename("foo.xml", "foo_after.xml", "a2")
     }
+
+    fun testCheck() {
+        var checker = Checker()
+        checker.Check("gasdfasdf", "v0.2")
+    }
 }
