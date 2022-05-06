@@ -31,6 +31,6 @@ class MyPluginTest : BasePlatformTestCase() {
 
     fun testCheck() {
         var checker = Checker()
-        checker.Check("gasdfasdf", "v0.2")
+        checker.Check("github.com/madneal/gshark", "v0.2")
     }
 }
