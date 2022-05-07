@@ -5,7 +5,7 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/19098-sca-checker.svg)](https://plugins.jetbrains.com/plugin/19098-sca-checker)
 
 <!-- Plugin description -->
-This is the first goland plugin for SCA of Go. It focuses on the dependency security of the Go project. It will generate the sca report for the dependencies with vulnerabilities.
+This is the first goland plugin for SCA of Go. It focuses on the dependency security of the Go project. It will generate the SCA report for the dependencies with vulnerabilities.
 <!-- Plugin description end -->
 
 ## Usage
