@@ -66,7 +66,7 @@ Aliases: $aliases
 ## Desciption
 ${ad.description}
 ## Impact
-Severity: ${ad.severity}
+Severity: ${ad.severity.replace("UNKNOWN", "NO RATING")}
 
 References:
 $refs
