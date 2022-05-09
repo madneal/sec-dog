@@ -9,7 +9,7 @@
 * fix the depencies of test framework
 * compatible to GO-2022.1
 
-## [v0.1.0]
+## [0.1.0]
 ### Changed
 * update the plugin icon
 ### Added
