@@ -12,11 +12,14 @@
 ## [0.1.0]
 ### Changed
 * update the plugin icon
+
 ### Added
 * add report finished notification
 * open report after finishing
+
 ### Fixed
 * fix for write action error log
+
 ## [0.0.4]
 ### Fixed
 * fix for the compatible version
