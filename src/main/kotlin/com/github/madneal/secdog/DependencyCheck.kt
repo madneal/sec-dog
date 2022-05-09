@@ -36,7 +36,10 @@ class DependencyCheck : DumbAwareAction() {
                 var newLine = line.trimStart()
                 var packages = newLine.split("\\s+".toRegex()).toTypedArray()
                 if (packages.isNotEmpty()) {
-                    result += checker.Check(packages[0], packages[1])
+                    val packageResult = checker.Check(packages[0], packages[1])
+                    if (packageResult != "" && !result.contains(packageResult)) {
+                        result += packageResult
+                    }
                 }
             }
         }

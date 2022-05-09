@@ -70,7 +70,8 @@ Severity: ${ad.severity}
 
 References:
 $refs
-                """
+
+"""
             result.append(adString)
         }
         return result.toString()
