@@ -59,7 +59,9 @@ class Checker {
 ## ${ad.title}
 ## Overview
 Source: ${ad.source}
+
 ID: ${ad.sourceID}
+
 Aliases: $aliases
 ## Desciption
 ${ad.description}
