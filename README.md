@@ -9,7 +9,7 @@ This is the first goland plugin for SCA of Go. It focuses on the dependency secu
 <!-- Plugin description end -->
 
 ## Usage
-Plese refer to this [video] for the install and usage.
+Plese refer to this [video](https://www.bilibili.com/video/BV1u44y1g752) for the install and usage.
 
 ### By menu
 
