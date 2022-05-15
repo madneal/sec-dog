@@ -18,7 +18,7 @@ import java.io.File
 
 
 class DependencyCheck : DumbAwareAction() {
-    val reportName = "SCA.md"
+    private val reportName = "SCA.md"
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.getData(PlatformDataKeys.PROJECT) as Project
         var result = ""
@@ -33,7 +33,7 @@ class DependencyCheck : DumbAwareAction() {
         var lines = modFile.text.split("\r?\n|\r".toRegex()).toTypedArray()
         for (line in lines) {
             if (line.contains("/") && !line.startsWith("module")) {
-                var newLine = line.trimStart()
+                val newLine = line.trimStart()
                 var packages = newLine.split("\\s+".toRegex()).toTypedArray()
                 if (packages.isNotEmpty()) {
                     val packageResult = checker.Check(packages[0], packages[1])
