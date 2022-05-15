@@ -68,7 +68,7 @@ ${ad.description}
 ## Impact
 Severity: ${ad.severity.replace("UNKNOWN", "NO RATING")}
 
-References:
+## References:
 $refs
 
 """

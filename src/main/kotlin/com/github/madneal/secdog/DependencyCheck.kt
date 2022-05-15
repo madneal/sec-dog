@@ -52,7 +52,6 @@ class DependencyCheck : DumbAwareAction() {
                 directory.add(createFileFromText)
             }
             var file = VfsUtil.findFileByIoFile(File(project.basePath+"/"+reportName), true)
-            println(file)
             if (file != null) {
                 try {
                     FileEditorManager.getInstance(project).openTextEditor(OpenFileDescriptor(project, file), true)
