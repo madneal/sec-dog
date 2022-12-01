@@ -57,18 +57,20 @@ class Checker {
             val refs = ad.referenceURLs.map { it -> "* $it " }.joinToString("\n")
             var adString = """
 ## ${ad.title}
-## Overview
+### Overview
 Source: ${ad.source}
 
 ID: ${ad.sourceID}
 
 Aliases: $aliases
-## Desciption
+
+### Description
 ${ad.description}
-## Impact
+
+### Impact
 Severity: ${ad.severity.replace("UNKNOWN", "NO RATING")}
 
-## References:
+### References:
 $refs
 
 """
